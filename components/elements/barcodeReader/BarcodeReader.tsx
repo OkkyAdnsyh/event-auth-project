@@ -9,7 +9,7 @@ export interface IScannerProps{
     isActive? : boolean,
     children? : React.ReactNode,
     interval? : number,
-    license : string,
+    license? : string,
     onInitialized? : (enchancer:CameraEnhancer, scanner:BarcodeScanner) => void,
     onScanned? : (result:TextResult[]) => void,
     onPlayed? : (playCallbackInfo : PlayCallbackInfo) => void,
@@ -33,7 +33,7 @@ const BarcodeReader = (props:IScannerProps) => {
     
     useEffect(() => {
         const init = async () => {
-            {BarcodeScanner.isWasmLoaded() === false ? BarcodeScanner.license = props.license : ""}
+            {BarcodeScanner.isWasmLoaded() === false ? BarcodeScanner.license = props.license as string : ""}
             
             scanner.current = await BarcodeScanner.createInstance();
             enhancer.current = await CameraEnhancer.createInstance();

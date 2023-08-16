@@ -1,21 +1,14 @@
 import BarcodeReader from '@/components/elements/barcodeReader/BarcodeReader';
 import React from 'react'
 
-interface ILicenseKeyProps{
-  license : string
-}
+export default function Home() {
 
-export async function getServerSideProps() {
-  let license: string | undefined = process.env.DBR_LICENSE_KEY
-  return {props : {license : license}}
-}
-
-export default function Home(props : ILicenseKeyProps) {
+  const license = process.env.DBR_LICENSE_KEY
 
   return (
     <>
       <h2>Start Scanning</h2>
-      <BarcodeReader license={props.license}/>
+      <BarcodeReader license={license}/>
     </>
   )
 }
