@@ -18,7 +18,7 @@ export interface IScannerProps{
 
 const BarcodeReader = (props:IScannerProps) => {
     const cameraContainer = useRef(null);
-    const [mounted, setMount] = useState(false);
+    const mounted = useRef(false);
     const [isActive, setIsActive] = useState(false);
     const interval = useRef<any>(null);
     const decoding = useRef(false);
@@ -29,7 +29,17 @@ const BarcodeReader = (props:IScannerProps) => {
     const togglingCamera = () => {
         setIsActive(!isActive);
     }
-
+    const toggleCamera = () => {
+        if(mounted){
+            if(isActive){
+                enhancer.current?.open(true);
+                startScanning();
+            } else {
+                enhancer.current.close();
+                stopScanning();
+            }
+        };
+    };
     
     useEffect(() => {
         const init = async () => {
@@ -52,19 +62,17 @@ const BarcodeReader = (props:IScannerProps) => {
 
             {props.onInitialized && props.onInitialized(enhancer.current, scanner.current)};
 
-            {mounted === false ? init() : ""};
+            {mounted.current === false ? init() : ""};
 
-            setMount(!mounted);
+            mounted.current = true;
 
             toggleCamera();
         }
-
     }, []);
-
     
     const startScanning = () => {
         const decode = async () => {
-            if(decoding.current === false && scanner && enhancer){
+            if(decoding.current === false && scanner.current && enhancer.current){
                 decoding.current = true;
                 const result = await scanner.current.decode(enhancer.current.getFrame());
 
@@ -88,21 +96,11 @@ const BarcodeReader = (props:IScannerProps) => {
         clearInterval(interval.current);
     };
 
-    const toggleCamera = () => {
-        if(mounted){
-            if(isActive){
-                enhancer.current?.open(true);
-                startScanning();
-            } else {
-                enhancer.current.close();
-                stopScanning();
-            }
-        };
-    };
 
+    
     useEffect(() => {
         toggleCamera();
-    }, [props.isActive]);
+    }, [isActive]);
 
 
     
