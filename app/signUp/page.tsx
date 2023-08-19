@@ -13,7 +13,7 @@ interface IDataProps{
   name : string
 }
 
-const pages = () => {
+const Page = () => {
 
   const [encrypted, setEncrypted] = useState<string | null>();
   const [signStatus, setSignStatus] = useState<boolean>(false);
@@ -76,4 +76,4 @@ const pages = () => {
   )
 }
 
-export default pages
+export default Page
