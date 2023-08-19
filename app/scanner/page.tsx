@@ -11,7 +11,7 @@ const CryptoJs = require('crypto-js');
 const Page = () => {
 
     const [isOpen, setIsOpen] = useState(false);
-    const [decrypted, setDecrypted] = useState<string>(CryptoJs.AES.decrypt(window.localStorage.getItem('data'), 'test-key').toString(CryptoJs.enc.Utf8));
+    const [decrypted, setDecrypted] = useState<string>('');
     const [loginStatus, setStatus] = useState(false);
     const [showPopup, setShow] = useState(false);
 
@@ -27,6 +27,8 @@ const Page = () => {
                 } throw ex;
             } 
         };
+
+        setDecrypted(CryptoJs.AES.decrypt(window.localStorage.getItem('data'), 'test-key').toString(CryptoJs.enc.Utf8));
     
         initBarcodeScanner();
     }, []);
