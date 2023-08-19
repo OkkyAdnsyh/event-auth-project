@@ -10,7 +10,8 @@ const CryptoJs = require('crypto-js');
 
 interface IDataProps{
   dataEnc : string,
-  name : string
+  name : string,
+  quota : number
 }
 
 const Page = () => {
@@ -18,7 +19,8 @@ const Page = () => {
   const [encrypted, setEncrypted] = useState<string | null>();
   const [signStatus, setSignStatus] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  let pScanner : Promise<BarcodeReader> | null = null
+
+  const [formData, setFormData] = useState<IDataProps>();
 
   const openScanner = () => {
     setIsOpen(!isOpen);
@@ -28,12 +30,16 @@ const Page = () => {
     results.map(result => {
       let encrypt = CryptoJs.AES.encrypt(result.barcodeText, "test-key");
       setEncrypted(encrypt);
-      setIsOpen(!isOpen)
+      setIsOpen(!isOpen);
     })
   }
 
   const onSubmit = async () => {
     localStorage.setItem('data', encrypted as string);
+  }
+
+  const onSubmitForm = (event : React.FormEvent<HTMLFormElement>)=>{
+    event.preventDefault()
   }
 
   useEffect(() => {
@@ -46,7 +52,7 @@ const Page = () => {
                 console.log(customMsg);
                 alert(customMsg);
             } throw ex;
-        } 
+        }
     };
 
     initBarcodeScanner();
@@ -56,16 +62,15 @@ const Page = () => {
     <>
       {!isOpen && 
       <div className={styles.mainContainer}>
-        <div className={styles.inputContainer}>
+        <form onSubmit={onSubmitForm} className={styles.inputContainer}>
           <div className={styles.inputGroup}>
             <input className={`${styles.input} data-show`} type="text" readOnly={true} value={encrypted as string}/>
-            <input className={`${styles.input} data-name`} type="text" placeholder='Name' />
           </div>
           <div className={styles.btnGroup}>
-            <button onClick={onSubmit} className={styles.mainButton}>Sign Data</button>
+            <button type='submit' onClick={onSubmit} className={styles.mainButton}>Register Data</button>
             <button onClick={openScanner} className={styles.mainButton}>Start Scanning</button>
           </div>
-        </div>
+        </form>
       </div>
       }
       <div>

@@ -11,7 +11,7 @@ const CryptoJs = require('crypto-js');
 const Page = () => {
 
     const [isOpen, setIsOpen] = useState(false);
-    const [decrypted, setDecrypted] = useState<string>();
+    const [decrypted, setDecrypted] = useState<string>(CryptoJs.AES.decrypt(window.localStorage.getItem('data'), 'test-key').toString(CryptoJs.enc.Utf8));
     const [loginStatus, setStatus] = useState(false);
     const [showPopup, setShow] = useState(false);
 
@@ -33,13 +33,13 @@ const Page = () => {
 
     const openScanner = () => {
         setIsOpen(!isOpen);
-        setDecrypted(CryptoJs.AES.decrypt(window.localStorage.getItem('data'), 'test-key').toString(CryptoJs.enc.Utf8));
     };
 
     const onFrameRead = (results : TextResult[]) => {
         results.map(result => {
-            {result.barcodeText === decrypted ? setStatus(!loginStatus) : ''};
+            {result.barcodeText === decrypted ? setStatus(true) : setStatus(false)};
             setShow(!showPopup);
+            setIsOpen(!isOpen)
         })
     };
 
@@ -49,7 +49,9 @@ const Page = () => {
 
     const closePopUp = () => {
         setShow(!showPopup)
+        setIsOpen(!isOpen)
     }
+    
 
   return (
     <>
@@ -72,10 +74,10 @@ const Page = () => {
             </div>
         }
         <button onClick={closePopUp} className={styles.mainButton}>Continue Scanning</button>
+        <button onClick={closePopUp} className={styles.mainButton}>Stop Scanning</button>
     </div>
     }
     </>
   )
 }
-
 export default Page

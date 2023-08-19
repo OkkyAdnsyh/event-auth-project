@@ -7,32 +7,36 @@ import style from '@/styles/app.module.scss';
 export interface IScannerProps{
     onFrameRead? : (results : TextResult[]) => void,
     onUniqueRead? : (txt : string, result : TextResult) => void
+    onClose? : boolean
 }
 
 const VideoDecoder = (props : IScannerProps) => {
     let pScanner : Promise<BarcodeScanner> | null = null
+    const scanner = useRef<BarcodeScanner>()
     const elRef = useRef(null);
 
     
     useEffect(() => {
         const init = async () => {
-            const scanner = await (pScanner = BarcodeScanner.createInstance());
+            scanner.current = await (pScanner = BarcodeScanner.createInstance())
 
-            await scanner.setUIElement(elRef.current!);
-
-            scanner.onFrameRead = props.onFrameRead;
-
-            scanner.onUniqueRead = props.onUniqueRead;
-
-            await scanner.open();
-
-            setInterval(() => {
-                scanner.hide();
-            }, 10000);
+            await scanner.current.setUIElement(elRef.current!);            
+            scanner.current.onFrameRead = props.onFrameRead;
+    
+            scanner.current.onUniqueRead = props.onUniqueRead;
+            
+            await scanner.current.open();
         }
         init();
+
+        const cleanUp = async () => {
+            await scanner.current?.destroyContext();
+        }
+
+        return () => {
+            cleanUp()
+        };
     }, []);
-    
 
 
   return (
