@@ -53,6 +53,11 @@ const Page = () => {
         setShow(!showPopup)
         setIsOpen(!isOpen)
     }
+
+    const closeScanner = () => {
+        setShow(!showPopup);
+        setIsOpen(false)
+    }
     
 
   return (
@@ -76,7 +81,7 @@ const Page = () => {
             </div>
         }
         <button onClick={closePopUp} className={styles.mainButton}>Continue Scanning</button>
-        <button onClick={closePopUp} className={styles.mainButton}>Stop Scanning</button>
+        <button onClick={closeScanner} className={styles.mainButton}>Stop Scanning</button>
     </div>
     }
     </>
