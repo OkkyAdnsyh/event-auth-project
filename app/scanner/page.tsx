@@ -10,10 +10,10 @@ const CryptoJs = require('crypto-js');
 
 const Page = () => {
 
-    const storage = localStorage
+    const storage = localStorage.getItem('data')
 
     const [isOpen, setIsOpen] = useState(false);
-    const [decrypted, setDecrypted] = useState<string>(CryptoJs.AES.decrypt(storage.getItem('data'), 'test-key').toString(CryptoJs.enc.Utf8));
+    const [decrypted, setDecrypted] = useState<string>(CryptoJs.AES.decrypt(storage, 'test-key').toString(CryptoJs.enc.Utf8));
     const [loginStatus, setStatus] = useState(false);
     const [showPopup, setShow] = useState(false);
 
