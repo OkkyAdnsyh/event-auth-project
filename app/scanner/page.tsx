@@ -10,7 +10,7 @@ const CryptoJs = require('crypto-js');
 
 const Page = () => {
 
-    const storage = localStorage.getItem('data')
+    let storage;
 
     const [isOpen, setIsOpen] = useState(false);
     const [decrypted, setDecrypted] = useState<string>(CryptoJs.AES.decrypt(storage, 'test-key').toString(CryptoJs.enc.Utf8));
@@ -32,9 +32,7 @@ const Page = () => {
     
         initBarcodeScanner();
 
-        
-        
-
+        storage = localStorage.getItem('data');
 
     }, []);
 
