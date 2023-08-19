@@ -8,7 +8,7 @@ import '@/dbr'
 
 const CryptoJs = require('crypto-js');
 
-const page = () => {
+const Page = () => {
 
     const [isOpen, setIsOpen] = useState(false);
     const [decrypted, setDecrypted] = useState<string>();
@@ -78,4 +78,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
