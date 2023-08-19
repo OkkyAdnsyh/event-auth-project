@@ -12,6 +12,7 @@ export interface IScannerProps{
 const VideoDecoder = (props : IScannerProps) => {
     let pScanner : Promise<BarcodeScanner> | null = null
     const elRef = useRef(null);
+
     
     useEffect(() => {
         const init = async () => {
@@ -26,8 +27,8 @@ const VideoDecoder = (props : IScannerProps) => {
             await scanner.open();
 
             setInterval(() => {
-                scanner.close();
-            }, 60000);
+                scanner.hide();
+            }, 10000);
         }
         init();
     }, []);

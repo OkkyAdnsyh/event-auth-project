@@ -4,6 +4,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 2rem;
+    position: absolute;
+    z-index: 888;
 }
 .linkContainer{
     width: auto;
@@ -84,4 +87,12 @@
         color: black;
         font-size: 1rem;
     }
+}
+
+.success{
+    background: green;
+}
+
+.alert{
+    background: red;
 }

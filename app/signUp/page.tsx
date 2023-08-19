@@ -34,7 +34,6 @@ const Page = () => {
 
   const onSubmit = async () => {
     localStorage.setItem('data', encrypted as string);
-    setEncrypted("");
   }
 
   useEffect(() => {
@@ -55,6 +54,7 @@ const Page = () => {
 
   return (
     <>
+      {!isOpen && 
       <div className={styles.mainContainer}>
         <div className={styles.inputContainer}>
           <div className={styles.inputGroup}>
@@ -67,6 +67,7 @@ const Page = () => {
           </div>
         </div>
       </div>
+      }
       <div>
         {isOpen && <VideoDecoder
           onFrameRead={onFrameRead}

@@ -8,12 +8,10 @@ import '@/dbr'
 
 const CryptoJs = require('crypto-js');
 
-const Page = () => {
-
-    let storage;
+const page = () => {
 
     const [isOpen, setIsOpen] = useState(false);
-    const [decrypted, setDecrypted] = useState<string>(CryptoJs.AES.decrypt(storage, 'test-key').toString(CryptoJs.enc.Utf8));
+    const [decrypted, setDecrypted] = useState<string>();
     const [loginStatus, setStatus] = useState(false);
     const [showPopup, setShow] = useState(false);
 
@@ -31,20 +29,17 @@ const Page = () => {
         };
     
         initBarcodeScanner();
-
-        storage = localStorage.getItem('data');
-
     }, []);
 
     const openScanner = () => {
         setIsOpen(!isOpen);
+        setDecrypted(CryptoJs.AES.decrypt(window.localStorage.getItem('data'), 'test-key').toString(CryptoJs.enc.Utf8));
     };
 
     const onFrameRead = (results : TextResult[]) => {
         results.map(result => {
             {result.barcodeText === decrypted ? setStatus(!loginStatus) : ''};
             setShow(!showPopup);
-            setIsOpen(!isOpen);
         })
     };
 
@@ -56,13 +51,13 @@ const Page = () => {
         setShow(!showPopup)
     }
 
-    console.log(decrypted)
-
   return (
     <>
-    <div className={styles.mainContainer}>
-        <button onClick={openScanner} className={styles.mainButton}>Start Scanning</button>
-    </div>
+    {!isOpen && 
+        <div className={styles.mainContainer}>
+            <button onClick={openScanner} className={styles.mainButton}>Start Scanning</button>
+        </div>
+    }
     <div>
         {isOpen && <VideoDecoder onFrameRead={onFrameRead}/>}
     </div>
@@ -83,4 +78,4 @@ const Page = () => {
   )
 }
 
-export default Page
+export default page
