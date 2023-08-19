@@ -8,7 +8,7 @@ import '@/dbr'
 
 const CryptoJs = require('crypto-js');
 
-const page = () => {
+const Page = () => {
 
     const storage = localStorage
 
@@ -85,4 +85,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
