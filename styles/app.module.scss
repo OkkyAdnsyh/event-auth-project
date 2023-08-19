@@ -1,0 +1,87 @@
+.mainContainer{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.linkContainer{
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3.2rem;
+    flex-direction: column;
+}
+
+.link{
+    padding: 1rem 3.2rem;
+    background: burlywood;
+    border-radius: .3rem;
+    color: black;
+}
+
+.inputContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 2rem;
+    align-items: center;
+    justify-content: center;
+    gap: 3.2rem;
+}
+.inputGroup{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+.input{
+    width: 100%;
+    padding-block: 1rem;
+    padding-left: 1rem;
+    font-size: 1rem;
+    background: white;
+    color: black;
+}
+.btnGroup{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.mainButton{
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    background: burlywood;
+    font-size: 1rem;
+    color: black;
+}
+.mainContainerVideo{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+}
+
+.popUpContainer{
+    position: absolute;
+    z-index: 999;
+    gap: 2rem;
+    top: 0;
+}
+
+.popUp{
+    padding: 1rem 3rem;
+    background: blueviolet;
+    p{
+        color: black;
+        font-size: 1rem;
+    }
+}

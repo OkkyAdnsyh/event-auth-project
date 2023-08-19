@@ -1,0 +1,3 @@
+import { BarcodeScanner } from 'dynamsoft-javascript-barcode';
+BarcodeScanner.license = "DLS2eyJoYW5kc2hha2VDb2RlIjoiMTAyMTQxMzQzLVRYbFhaV0pRY205cVgyUmljZyIsIm1haW5TZXJ2ZXJVUkwiOiJodHRwczovL21kbHMuZHluYW1zb2Z0b25saW5lLmNvbS8iLCJvcmdhbml6YXRpb25JRCI6IjEwMjE0MTM0MyIsInN0YW5kYnlTZXJ2ZXJVUkwiOiJodHRwczovL3NkbHMuZHluYW1zb2Z0b25saW5lLmNvbS8iLCJjaGVja0NvZGUiOjI5NjkwNDIzfQ=="
+BarcodeScanner.engineResourcePath = "https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode/dist/";

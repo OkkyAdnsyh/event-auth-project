@@ -12,6 +12,7 @@
     "@types/node": "20.5.0",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
+    "crypto-js": "^4.1.1",
     "dynamsoft-camera-enhancer": "^3.3.5",
     "dynamsoft-javascript-barcode": "^9.6.21",
     "eslint": "8.47.0",
@@ -19,6 +20,7 @@
     "next": "13.4.16",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "sass": "^1.66.0",
     "typescript": "5.1.6"
   }
 }
