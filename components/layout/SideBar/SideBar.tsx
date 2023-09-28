@@ -45,9 +45,7 @@ const SideBar = () => {
                 <FA6.FaUserGear style={{fontSize : "24px"}}/>
                 Account Settings
             </Link>
-            <Button
-                className={`bg-red-600`}
-            >
+            <Button>
                 LOGOUT
             </Button>
         </div>

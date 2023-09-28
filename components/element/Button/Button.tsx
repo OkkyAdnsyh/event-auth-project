@@ -1,9 +1,13 @@
 import React, { HTMLProps } from 'react'
 
-const Button = ({children, type, className, ...rest} : HTMLProps<HTMLButtonElement>) => {
+export interface IBtnProps extends HTMLProps<HTMLButtonElement>{
+  type : "submit" | "button" | "reset" | undefined
+}
+
+const Button = ({children, type, className, ...rest} : IBtnProps) => {
   return (
     <>
-        <button {...rest} className={`py-2 px-8 rounded-full bg-yellow-100 text-gray-950 text-md ${className}`}>
+        <button {...rest} type={type} className={`py-2 px-8 rounded-full text-gray-950 text-md ${className}`}>
             {children}
         </button>
     </>
