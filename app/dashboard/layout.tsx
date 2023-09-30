@@ -1,13 +1,13 @@
 import SideBar from '@/components/layout/SideBar/SideBar'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 const DashboardLayout = ({children} : {children : React.ReactNode}) => {
   return (
     <>
-      <div className={'flex'}>
-        <SideBar/>
-        {children}
-      </div>
+        <div className={'flex'}>
+          <SideBar/>
+          {children}
+        </div>
     </>
   )
 }

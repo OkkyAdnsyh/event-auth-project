@@ -7,3 +7,10 @@ export const setCookies = async (data : string, pathname : string) => {
 
     cookies().set('token', data)
 }
+
+export const deleteOnPathCookies =async (pathname: string) => {
+    const hasCookies = cookies().has('token')
+    if(hasCookies){
+        if(pathname === '/' || pathname === '/signUp') cookies().delete('token')
+    }
+}
