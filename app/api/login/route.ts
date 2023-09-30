@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { cookies } from "next/headers"
+import { strict } from "assert"
 
 export async function POST(req:Request) {
     const body = await req.json()
@@ -18,7 +19,7 @@ export async function POST(req:Request) {
 
     const data = await res.json()
 
-    cookies().set('token', data.token)
+    cookies().set('token', data.token, {maxAge : 60 * 60 * 24, httpOnly : true, sameSite : 'strict'})
 
     return NextResponse.json({message : 'Login Success'}, {status : 200})
 }

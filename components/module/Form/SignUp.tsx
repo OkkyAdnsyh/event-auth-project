@@ -160,9 +160,9 @@ const SignUp = () => {
                 }
             </div>
         }        
-        <div className={`w-1/2 px-6 py-8 bg-sky-600 rounded-lg flex flex-col items-center justify-between gap-6`}>
-            <h1 className={`text-xl text-black`}>Create New Account</h1>
-            <FormControl onSubmit={onSubmit} method='POST' className={`py-6 px-4 bg-sky-300 rounded-md`}>
+        <div className={`w-full lg:w-[45%] px-6 lg:px-8 py-4 lg:py-6 bg-gray-100 rounded-lg flex flex-col items-center justify-between gap-4`}>
+            <h1 className={`text-xl font-bold text-black`}>Create New Account</h1>
+            <FormControl onSubmit={onSubmit} method='POST' className={`bg-slate-950 flex flex-col items-start justify-start gap-y-3 w-full py-4 lg:py-8 lg:px-12 px-6 rounded-md`}>
                 <TextInput
                     name='email'
                     id='email'
@@ -200,13 +200,13 @@ const SignUp = () => {
                 >
                     Confirm Your Password
                 </TextInput>
-                <div className={`flex items-center justify-center mt-4 gap-6`}>
+                <div className={`w-full flex lg:flex-row flex-col items-center justify-center mt-4 gap-y-4 lg:gap-y-0 lg:gap-x-6`}>
                     <Button type='submit'
-                        className='bg-yellow-400'
+                        className='bg-btn-grad font-bold'
                     >
                         Sign Up
                     </Button>
-                    <Button onClick={resetState} type='reset' className='bg-red-400'>
+                    <Button onClick={resetState} type='reset' className='bg-transparent text-red-700 font-bold underline underline-offset-4'>
                         Cancel
                     </Button>
                 </div>

@@ -4,8 +4,43 @@ import DataInsight from '@/components/layout/DataInsight/DataInsight'
 import React from 'react'
 import  Link  from 'next/link'
 import * as FA from 'react-icons/fa'
+import { cookies } from 'next/headers'
 
-const page = () => {
+const getCookies = async () => {
+  'use server'
+  const cookieStore = cookies()
+  const cookiesData = cookieStore.get('token')
+
+  return cookiesData?.value
+}
+
+const getUser = async () => {
+
+  const token = await getCookies()
+
+  const res = await fetch('http://localhost:3000/api/user', {
+    method : 'GET',
+    credentials : 'include',
+    mode : 'same-origin',
+    headers : {
+      Authorization : `${token}`
+    }
+  })
+  
+  if(!res.ok){
+    const err = await res.json()
+    throw new Error(err.message)
+  }
+
+  return res.json()
+}
+
+
+
+const page = async () => {
+  const userData = await getUser()
+  console.log(userData)
+
   return (
     <>
       <div className={`w-full h-screen px-6 py-6 grid grid-rows-5 gap-y-4`}>
@@ -72,6 +107,7 @@ const page = () => {
           </div>
         </section>
       </div>
+      
     </>
   )
 }
